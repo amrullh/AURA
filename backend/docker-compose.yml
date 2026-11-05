@@ -1,0 +1,33 @@
+# Menjalankan backend + Postgres: docker compose up --build
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: invoice_agent
+    ports: ["5432:5432"]
+    volumes: [dbdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d invoice_agent"]
+      interval: 3s
+      retries: 20
+  api:
+    build: .
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/invoice_agent
+      JWT_SECRET: ${JWT_SECRET:-ganti-rahasia-ini}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-demo12345}
+      AGENT_MODE: ${AGENT_MODE:-stub}
+      AGENT_URL: ${AGENT_URL:-http://host.docker.internal:8000}
+      UPLOAD_DIR: /data/storage
+      OPENAPI_PATH: /app/openapi.yaml
+    ports: ["3000:3000"]
+    volumes:
+      - uploads:/data/storage
+      - ../docs/api/openapi.yaml:/app/openapi.yaml:ro
+volumes:
+  dbdata:
+  uploads:

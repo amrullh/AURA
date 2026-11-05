@@ -1,0 +1,55 @@
+export enum Role {
+  STAF_FINANCE = 'STAF_FINANCE',
+  VERIFIKATOR = 'VERIFIKATOR',
+  ADMIN = 'ADMIN',
+}
+
+export enum ProcessingStatus {
+  QUEUED = 'QUEUED',
+  PROCESSING = 'PROCESSING',
+  DONE = 'DONE',
+  FAILED = 'FAILED',
+}
+
+export enum Verdict {
+  CLEAN = 'CLEAN',
+  EXCEPTION = 'EXCEPTION',
+  DUPLICATE = 'DUPLICATE',
+  NEEDS_REVIEW = 'NEEDS_REVIEW',
+}
+
+export enum DecisionStatus {
+  PENDING = 'PENDING',
+  ESCALATED = 'ESCALATED',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}
+
+export enum DecisionAction {
+  APPROVE = 'APPROVE',
+  REJECT = 'REJECT',
+  ESCALATE = 'ESCALATE',
+}
+
+export enum ActorType {
+  USER = 'USER',
+  AGENT = 'AGENT',
+}
+
+export enum AuditAction {
+  LOGIN = 'LOGIN',
+  INVOICE_UPLOADED = 'INVOICE_UPLOADED',
+  INVOICE_PROCESSED = 'INVOICE_PROCESSED',
+  INVOICE_RETRY = 'INVOICE_RETRY',
+  DECISION_APPROVE = 'DECISION_APPROVE',
+  DECISION_REJECT = 'DECISION_REJECT',
+  DECISION_ESCALATE = 'DECISION_ESCALATE',
+  SETTINGS_UPDATED = 'SETTINGS_UPDATED',
+  USER_CREATED = 'USER_CREATED',
+  USER_UPDATED = 'USER_UPDATED',
+  MASTER_IMPORTED = 'MASTER_IMPORTED',
+  DEMO_RESET = 'DEMO_RESET',
+}
+
+/** Jumlah iterasi investigasi maksimum (tidak dapat diubah dari antarmuka). */
+export const MAX_ITERATIONS = 3;
