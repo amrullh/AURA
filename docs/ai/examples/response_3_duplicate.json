@@ -1,0 +1,76 @@
+{
+  "invoice": {
+    "invoice_number": "INV-2026-0412",
+    "vendor_id": "ven_003",
+    "vendor_name": "PT Sinar Kertas Nusantara",
+    "po_number": "PO-0012",
+    "invoice_date": "2026-10-28",
+    "total_amount": 7775000
+  },
+  "verdict": "DUPLICATE",
+  "confidence": 0.93,
+  "difference_amount": null,
+  "iterations": 0,
+  "review_reason": null,
+  "extraction": {
+    "fields": [
+      {
+        "key": "vendor_name",
+        "label": "Vendor",
+        "value": "PT Sinar Kertas Nusantara",
+        "confidence": 0.98
+      },
+      {
+        "key": "invoice_number",
+        "label": "No. invoice",
+        "value": "INV-2026-0412",
+        "confidence": 0.97
+      },
+      {
+        "key": "po_number",
+        "label": "Referensi PO",
+        "value": "PO-0012",
+        "confidence": 0.95
+      },
+      {
+        "key": "total_amount",
+        "label": "Total",
+        "value": "7775000",
+        "confidence": 0.96
+      }
+    ]
+  },
+  "comparison": null,
+  "tax_check": null,
+  "duplicate": {
+    "original_invoice_id": "inv_0412",
+    "original_invoice_number": "INV-2026-0412",
+    "original_total_amount": 7775000,
+    "original_created_at": "2026-10-31T01:12:00Z",
+    "match_basis": [
+      "invoice_number",
+      "total_amount",
+      "vendor"
+    ]
+  },
+  "investigation": null,
+  "finding": {
+    "summary": "Nomor invoice, vendor, dan total sama dengan invoice INV-2026-0412 yang sudah ada di sistem. Berkasnya berbeda (hasil pindai ulang).",
+    "recommendation": "Tolak sebagai duplikat agar tidak dibayar dua kali.",
+    "confidence": 0.93,
+    "labels": [
+      {
+        "type": "FACT",
+        "text": "Tiga atribut kunci identik dengan invoice yang sudah ada."
+      }
+    ],
+    "evidence": [
+      {
+        "source_type": "INVOICE",
+        "source_ref": "INV-2026-0412",
+        "page": 1,
+        "quote": "No. Invoice: INV-2026-0412, Total Rp7.775.000"
+      }
+    ]
+  }
+}

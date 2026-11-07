@@ -1,0 +1,173 @@
+{
+  "invoice": {
+    "invoice_number": "INV-7781",
+    "vendor_id": "ven_004",
+    "vendor_name": "UD Berkah Teknik",
+    "po_number": "PO-0019",
+    "invoice_date": "2026-10-30",
+    "total_amount": 5200000
+  },
+  "verdict": "NEEDS_REVIEW",
+  "confidence": 0.52,
+  "difference_amount": 1200000,
+  "iterations": 3,
+  "review_reason": "Keyakinan rendah (0,52)",
+  "extraction": {
+    "fields": [
+      {
+        "key": "vendor_name",
+        "label": "Vendor",
+        "value": "UD Berkah Teknik",
+        "confidence": 0.9
+      },
+      {
+        "key": "invoice_number",
+        "label": "No. invoice",
+        "value": "INV-7781",
+        "confidence": 0.62
+      },
+      {
+        "key": "po_number",
+        "label": "Referensi PO",
+        "value": "PO-0019",
+        "confidence": 0.55
+      },
+      {
+        "key": "total_amount",
+        "label": "Total",
+        "value": "5200000",
+        "confidence": 0.6
+      }
+    ]
+  },
+  "comparison": {
+    "tolerance_pct": 0.5,
+    "lines": [
+      {
+        "line_no": 1,
+        "item_name": "Kabel LAN Cat6 (roll)",
+        "po": {
+          "quantity": 10,
+          "unit_price": 380000
+        },
+        "grn": {
+          "quantity_received": 10
+        },
+        "invoice": {
+          "quantity": 10,
+          "unit_price": 380000
+        },
+        "status": "MATCH",
+        "diffs": []
+      },
+      {
+        "line_no": 2,
+        "item_name": "Jasa instalasi tambahan",
+        "po": null,
+        "grn": null,
+        "invoice": {
+          "quantity": 1,
+          "unit_price": 1200000
+        },
+        "status": "MISMATCH",
+        "diffs": [
+          {
+            "type": "ITEM",
+            "expected": 0,
+            "actual": 1200000,
+            "delta": 1200000,
+            "within_tolerance": false
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "po_total": 4000000,
+      "grn_total_at_po_price": 3800000,
+      "invoice_total": 5200000,
+      "difference": 1200000
+    }
+  },
+  "tax_check": {
+    "items": [
+      {
+        "key": "serial_number",
+        "label": "Nomor seri faktur pajak",
+        "result": "NA",
+        "detail": "Nomor seri tidak terbaca pada foto"
+      },
+      {
+        "key": "npwp",
+        "label": "NPWP",
+        "result": "PASS",
+        "detail": "Sesuai master vendor"
+      },
+      {
+        "key": "ppn",
+        "label": "PPN",
+        "result": "PASS",
+        "detail": "Sesuai perhitungan"
+      }
+    ]
+  },
+  "duplicate": null,
+  "investigation": {
+    "iterations": 3,
+    "max_iterations": 3,
+    "steps": [
+      {
+        "step": 1,
+        "hypothesis": "Jasa instalasi ada di PO sebagai item lain.",
+        "tool": "lookup_po_detail",
+        "tool_args_summary": "PO-0019",
+        "result_summary": "PO-0019 hanya memuat kabel LAN. Tidak ada jasa instalasi.",
+        "duration_ms": 3800
+      },
+      {
+        "step": 2,
+        "hypothesis": "Jasa instalasi diatur dalam kontrak vendor.",
+        "tool": "tarik_kontrak_vendor",
+        "tool_args_summary": "ven_004, klausul jasa",
+        "result_summary": "Tidak ada kontrak untuk vendor ini di data.",
+        "duration_ms": 2900
+      },
+      {
+        "step": 3,
+        "hypothesis": "Invoice serupa pernah ditagihkan.",
+        "tool": "cari_invoice_duplikat",
+        "tool_args_summary": "ven_004, 1200000",
+        "result_summary": "Tidak ditemukan invoice serupa.",
+        "duration_ms": 3100
+      }
+    ]
+  },
+  "finding": {
+    "summary": "Ada baris jasa instalasi Rp 1.200.000 yang tidak ada di PO maupun GRN. Foto invoice buram sehingga beberapa kolom terbaca dengan keyakinan rendah.",
+    "recommendation": "Minta konfirmasi ke pemesan atau vendor. Jangan setujui sebelum jasa instalasi dibenarkan.",
+    "confidence": 0.52,
+    "labels": [
+      {
+        "type": "FACT",
+        "text": "Baris jasa instalasi tidak ada di PO dan GRN."
+      },
+      {
+        "type": "HYPOTHESIS",
+        "text": "Jasa dipesan lewat jalur lain di luar PO."
+      }
+    ],
+    "evidence": [
+      {
+        "source_type": "PO",
+        "source_ref": "PO-0019",
+        "page": 1,
+        "quote": "Kabel LAN Cat6, 10 roll @ Rp380.000"
+      },
+      {
+        "source_type": "INVOICE",
+        "source_ref": "INV-7781",
+        "page": 1,
+        "quote": "Jasa instalasi tambahan 1 x Rp1.200.000"
+      }
+    ]
+  }
+}

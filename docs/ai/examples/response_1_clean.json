@@ -1,0 +1,113 @@
+{
+  "invoice": {
+    "invoice_number": "INV-0401",
+    "vendor_id": "ven_001",
+    "vendor_name": "PT Maju Jaya Abadi",
+    "po_number": "PO-0008",
+    "invoice_date": "2026-10-27",
+    "total_amount": 3250000
+  },
+  "verdict": "CLEAN",
+  "confidence": 0.97,
+  "difference_amount": 0,
+  "iterations": 0,
+  "review_reason": null,
+  "extraction": {
+    "fields": [
+      {
+        "key": "vendor_name",
+        "label": "Vendor",
+        "value": "PT Maju Jaya Abadi",
+        "confidence": 0.99
+      },
+      {
+        "key": "invoice_number",
+        "label": "No. invoice",
+        "value": "INV-0401",
+        "confidence": 0.99
+      },
+      {
+        "key": "po_number",
+        "label": "Referensi PO",
+        "value": "PO-0008",
+        "confidence": 0.97
+      },
+      {
+        "key": "total_amount",
+        "label": "Total",
+        "value": "3250000",
+        "confidence": 0.98
+      }
+    ]
+  },
+  "comparison": {
+    "tolerance_pct": 0.5,
+    "lines": [
+      {
+        "line_no": 1,
+        "item_name": "Kertas HVS F4 (rim)",
+        "po": {
+          "quantity": 25,
+          "unit_price": 55000
+        },
+        "grn": {
+          "quantity_received": 25
+        },
+        "invoice": {
+          "quantity": 25,
+          "unit_price": 55000
+        },
+        "status": "MATCH",
+        "diffs": []
+      },
+      {
+        "line_no": 2,
+        "item_name": "Pulpen gel hitam (lusin)",
+        "po": {
+          "quantity": 50,
+          "unit_price": 37500
+        },
+        "grn": {
+          "quantity_received": 50
+        },
+        "invoice": {
+          "quantity": 50,
+          "unit_price": 37500
+        },
+        "status": "MATCH",
+        "diffs": []
+      }
+    ],
+    "totals": {
+      "po_total": 3250000,
+      "grn_total_at_po_price": 3250000,
+      "invoice_total": 3250000,
+      "difference": 0
+    }
+  },
+  "tax_check": {
+    "items": [
+      {
+        "key": "serial_number",
+        "label": "Nomor seri faktur pajak",
+        "result": "PASS",
+        "detail": "Belum pernah dipakai"
+      },
+      {
+        "key": "npwp",
+        "label": "NPWP",
+        "result": "PASS",
+        "detail": "Sesuai master vendor"
+      },
+      {
+        "key": "ppn",
+        "label": "PPN",
+        "result": "PASS",
+        "detail": "Sesuai perhitungan"
+      }
+    ]
+  },
+  "duplicate": null,
+  "investigation": null,
+  "finding": null
+}

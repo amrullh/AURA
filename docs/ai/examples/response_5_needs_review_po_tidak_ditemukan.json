@@ -1,0 +1,104 @@
+{
+  "invoice": {
+    "invoice_number": "INV-5521",
+    "vendor_id": "ven_004",
+    "vendor_name": "UD Berkah Teknik",
+    "po_number": "PO-9999",
+    "invoice_date": "2026-10-30",
+    "total_amount": 2400000
+  },
+  "verdict": "NEEDS_REVIEW",
+  "confidence": 0.6,
+  "difference_amount": null,
+  "iterations": 1,
+  "review_reason": "PO PO-9999 tidak ditemukan di data master",
+  "extraction": {
+    "fields": [
+      {
+        "key": "vendor_name",
+        "label": "Vendor",
+        "value": "UD Berkah Teknik",
+        "confidence": 0.9
+      },
+      {
+        "key": "invoice_number",
+        "label": "No. invoice",
+        "value": "INV-7781",
+        "confidence": 0.62
+      },
+      {
+        "key": "po_number",
+        "label": "Referensi PO",
+        "value": "PO-0019",
+        "confidence": 0.55
+      },
+      {
+        "key": "total_amount",
+        "label": "Total",
+        "value": "5200000",
+        "confidence": 0.6
+      }
+    ]
+  },
+  "comparison": null,
+  "tax_check": {
+    "items": [
+      {
+        "key": "serial_number",
+        "label": "Nomor seri faktur pajak",
+        "result": "NA",
+        "detail": "Tidak diperiksa"
+      },
+      {
+        "key": "npwp",
+        "label": "NPWP",
+        "result": "PASS",
+        "detail": "Sesuai master vendor"
+      },
+      {
+        "key": "ppn",
+        "label": "PPN",
+        "result": "NA",
+        "detail": "Tidak dapat dihitung tanpa PO"
+      }
+    ]
+  },
+  "duplicate": null,
+  "investigation": {
+    "iterations": 1,
+    "max_iterations": 3,
+    "steps": [
+      {
+        "step": 1,
+        "hypothesis": "Nomor PO terbaca salah.",
+        "tool": "lookup_po_detail",
+        "tool_args_summary": "PO-9999",
+        "result_summary": "PO-9999 tidak ada di master. PO terdekat untuk vendor ini: PO-0019.",
+        "duration_ms": 2100
+      }
+    ]
+  },
+  "finding": {
+    "summary": "Invoice merujuk PO-9999 yang tidak ada di data master, sehingga pencocokan 3 arah tidak dapat dilakukan.",
+    "recommendation": "Minta pemesan atau vendor mengonfirmasi nomor PO yang benar.",
+    "confidence": 0.6,
+    "labels": [
+      {
+        "type": "FACT",
+        "text": "PO-9999 tidak ditemukan."
+      },
+      {
+        "type": "HYPOTHESIS",
+        "text": "Nomor PO salah ketik; PO-0019 milik vendor yang sama."
+      }
+    ],
+    "evidence": [
+      {
+        "source_type": "INVOICE",
+        "source_ref": "INV-5521",
+        "page": 1,
+        "quote": "Ref. PO: PO-9999"
+      }
+    ]
+  }
+}

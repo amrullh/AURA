@@ -1,0 +1,6 @@
+file_name,verdict_benar,po_number,selisih_benar,catatan
+eval_001_clean.pdf,CLEAN,PO-0012,0,Semua baris cocok
+eval_002_harga_naik.pdf,EXCEPTION,PO-0012,640000,Harga satuan naik di atas toleransi 0.5%
+eval_003_jumlah_lebih.pdf,EXCEPTION,PO-0008,0,Isi selisih dari perhitungan; jumlah invoice lebih besar dari GRN
+eval_004_duplikat.pdf,DUPLICATE,PO-0012,0,Nomor invoice sama dengan eval_001
+eval_005_po_tidak_ada.pdf,NEEDS_REVIEW,PO-9999,0,PO tidak ada di master

@@ -1,0 +1,11 @@
+{
+  "invoice_id": "inv_2786fc5b7f",
+  "file_name": "inv_sinar_kertas_0412.pdf",
+  "content_type": "application/pdf",
+  "file_base64": "JVBERi0xLjQK...(dipotong untuk contoh; isi aslinya seluruh berkas)",
+  "settings": {
+    "price_tolerance_pct": 0.5,
+    "confidence_threshold": 0.7,
+    "max_iterations": 3
+  }
+}

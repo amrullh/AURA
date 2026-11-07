@@ -1,0 +1,211 @@
+{
+  "invoice": {
+    "invoice_number": "INV-2026-0412",
+    "vendor_id": "ven_003",
+    "vendor_name": "PT Sinar Kertas Nusantara",
+    "po_number": "PO-0012",
+    "invoice_date": "2026-10-28",
+    "total_amount": 7775000
+  },
+  "verdict": "EXCEPTION",
+  "confidence": 0.86,
+  "difference_amount": 640000,
+  "iterations": 3,
+  "review_reason": null,
+  "extraction": {
+    "fields": [
+      {
+        "key": "vendor_name",
+        "label": "Vendor",
+        "value": "PT Sinar Kertas Nusantara",
+        "confidence": 0.99
+      },
+      {
+        "key": "invoice_number",
+        "label": "No. invoice",
+        "value": "INV-2026-0412",
+        "confidence": 0.98
+      },
+      {
+        "key": "po_number",
+        "label": "Referensi PO",
+        "value": "PO-0012",
+        "confidence": 0.95
+      },
+      {
+        "key": "total_amount",
+        "label": "Total",
+        "value": "7775000",
+        "confidence": 0.71
+      }
+    ]
+  },
+  "comparison": {
+    "tolerance_pct": 0.5,
+    "lines": [
+      {
+        "line_no": 1,
+        "item_name": "Kertas A4 80gr (rim)",
+        "po": {
+          "quantity": 100,
+          "unit_price": 58000
+        },
+        "grn": {
+          "quantity_received": 100
+        },
+        "invoice": {
+          "quantity": 100,
+          "unit_price": 62000
+        },
+        "status": "MISMATCH",
+        "diffs": [
+          {
+            "type": "PRICE",
+            "expected": 58000,
+            "actual": 62000,
+            "delta": 4000,
+            "delta_pct": 6.9,
+            "within_tolerance": false
+          }
+        ]
+      },
+      {
+        "line_no": 2,
+        "item_name": "Map folder",
+        "po": {
+          "quantity": 50,
+          "unit_price": 7500
+        },
+        "grn": {
+          "quantity_received": 50
+        },
+        "invoice": {
+          "quantity": 50,
+          "unit_price": 7500
+        },
+        "status": "MATCH",
+        "diffs": []
+      },
+      {
+        "line_no": 3,
+        "item_name": "Tinta printer",
+        "po": {
+          "quantity": 10,
+          "unit_price": 120000
+        },
+        "grn": {
+          "quantity_received": 8
+        },
+        "invoice": {
+          "quantity": 10,
+          "unit_price": 120000
+        },
+        "status": "MISMATCH",
+        "diffs": [
+          {
+            "type": "QUANTITY",
+            "expected": 8,
+            "actual": 10,
+            "delta": 2,
+            "delta_pct": 25.0,
+            "within_tolerance": false
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "po_total": 7375000,
+      "grn_total_at_po_price": 7135000,
+      "invoice_total": 7775000,
+      "difference": 640000
+    }
+  },
+  "tax_check": {
+    "items": [
+      {
+        "key": "serial_number",
+        "label": "Nomor seri faktur pajak",
+        "result": "PASS",
+        "detail": "Belum pernah dipakai"
+      },
+      {
+        "key": "npwp",
+        "label": "NPWP",
+        "result": "PASS",
+        "detail": "Sesuai master vendor"
+      },
+      {
+        "key": "ppn",
+        "label": "PPN",
+        "result": "PASS",
+        "detail": "Sesuai perhitungan"
+      }
+    ]
+  },
+  "duplicate": null,
+  "investigation": {
+    "iterations": 3,
+    "max_iterations": 3,
+    "steps": [
+      {
+        "step": 1,
+        "hypothesis": "Harga di invoice lebih tinggi dari PO.",
+        "tool": "lookup_po_detail",
+        "tool_args_summary": "PO-0012",
+        "result_summary": "Harga PO Kertas A4 Rp 58.000.",
+        "duration_ms": 4200
+      },
+      {
+        "step": 2,
+        "hypothesis": "Ada klausul kenaikan harga yang menyetujui.",
+        "tool": "tarik_kontrak_vendor",
+        "tool_args_summary": "ven_003, klausul harga",
+        "result_summary": "Pasal 4.2 mensyaratkan pemberitahuan tertulis 30 hari; tidak ada pemberitahuan.",
+        "duration_ms": 6100
+      },
+      {
+        "step": 3,
+        "hypothesis": "Jumlah tinta yang diterima kurang.",
+        "tool": "cek_grn_status",
+        "tool_args_summary": "PO-0012",
+        "result_summary": "Tinta printer diterima 8 dari 10.",
+        "duration_ms": 3300
+      }
+    ]
+  },
+  "finding": {
+    "summary": "Invoice menagih Kertas A4 Rp 62.000 padahal PO Rp 58.000, dan menagih 10 tinta printer padahal hanya 8 yang diterima. Selisih total Rp 640.000.",
+    "recommendation": "Tolak dan minta vendor menerbitkan koreksi invoice.",
+    "confidence": 0.86,
+    "labels": [
+      {
+        "type": "FACT",
+        "text": "Dua selisih terkonfirmasi (harga dan jumlah)."
+      },
+      {
+        "type": "HYPOTHESIS",
+        "text": "Kenaikan harga tanpa persetujuan."
+      }
+    ],
+    "evidence": [
+      {
+        "source_type": "PO",
+        "source_ref": "PO-0012",
+        "page": 1,
+        "quote": "Kertas A4 80gr, 100 rim @ Rp58.000"
+      },
+      {
+        "source_type": "CONTRACT",
+        "source_ref": "Kontrak PT Sinar Kertas Nusantara",
+        "page": 3,
+        "quote": "Perubahan harga wajib diberitahukan tertulis 30 hari sebelumnya (pasal 4.2)."
+      },
+      {
+        "source_type": "GRN",
+        "source_ref": "GRN-0087",
+        "page": 1,
+        "quote": "Tinta printer, diterima 8 unit"
+      }
+    ]
+  }
+}
