@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/inter';
+
+@theme {
+  --color-brand: #0f766e;
+  --color-brand-dark: #115e59;
+  --color-brand-light: #f0fdfa;
+  --color-brand-tint: #ccfbf1;
+  --color-line: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-danger: #991b1b;
+  --font-head: 'Plus Jakarta Sans Variable', sans-serif;
+  --font-sans: 'Inter Variable', sans-serif;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  background: linear-gradient(180deg, #cdebe7 0%, #e3f3f0 38%, #f7fbfa 100%) fixed;
+  min-height: 100vh;
+}
+
+/* Tombol bersama: ukuran, sorotan (hover), tekan (active), dan fokus keyboard */
+@layer components {
+  .btn {
+    @apply inline-flex min-h-10 cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-full px-5 text-sm font-semibold transition duration-150 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  }
+  .btn-primary {
+    @apply bg-brand text-white shadow-sm hover:bg-brand-dark hover:shadow-md active:bg-teal-900;
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-brand bg-white text-brand hover:bg-brand hover:text-white hover:shadow-md active:bg-brand-dark active:text-white;
+  }
+  .btn-danger {
+    @apply border-[1.5px] border-danger bg-white text-danger hover:bg-danger hover:text-white hover:shadow-md active:bg-red-950 active:text-white;
+  }
+  .btn-sm {
+    @apply min-h-8 px-3.5 text-[13px];
+  }
+}
