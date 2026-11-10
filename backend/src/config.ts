@@ -16,5 +16,11 @@ export const config = {
   agentTimeoutMs: () => int(process.env.AGENT_TIMEOUT_MS, 120_000),
   stubDelayMs: () => int(process.env.STUB_DELAY_MS, 4000),
   demoPassword: () => process.env.DEMO_PASSWORD ?? 'demo12345',
+  /** Origin yang diizinkan CORS (dipisah koma). Kosong = izinkan semua (cukup untuk penjurian). */
+  corsOrigins: () =>
+    (process.env.CORS_ORIGINS ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
   openapiPath: () => process.env.OPENAPI_PATH ?? '../docs/api/openapi.yaml',
 };

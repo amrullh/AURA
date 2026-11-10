@@ -7,18 +7,10 @@ import { BatchesService } from '../batches/batches.service';
 import { AuditService, userActor } from '../audit/audit.service';
 import { Invoice } from '../database/entities';
 import { ProcessingService } from '../processing/processing.service';
-import { resetSettings, seedMaster } from '../seed/master-data';
+import { resetSettings, seedDemoDuplicate, seedMaster } from '../seed/master-data';
 import { StorageService } from '../storage/storage.service';
 import { makePdf } from './pdf';
-
-// Nama berkas menentukan hasil pada agent tiruan. "duplicate" diletakkan paling akhir agar asli sudah ada.
-const SAMPLE_FILES = [
-  ...Array.from({ length: 6 }, (_, i) => `demo_clean_${String(i + 1).padStart(2, '0')}.pdf`),
-  ...Array.from({ length: 3 }, (_, i) => `demo_exception_${String(i + 1).padStart(2, '0')}.pdf`),
-  'demo_review_01.pdf',
-  'demo_gagal_01.pdf',
-  'demo_duplicate_01.pdf',
-];
+import { brokenPdf, sampleScenarios } from './scenarios';
 
 @Injectable()
 export class DemoService {
@@ -30,17 +22,16 @@ export class DemoService {
     private readonly processing: ProcessingService,
   ) {}
 
-  /** Membuat batch contoh dari PDF sintetis lewat jalur unggah yang sama dengan unggahan biasa. */
+  /**
+   * Membuat batch contoh dari PDF sintetis lewat jalur unggah yang sama dengan unggahan biasa.
+   * Isi dokumen mengikuti skenario nyata (clean/exception/review/duplicate/gagal) supaya
+   * agent sungguhan benar-benar mencocokkan isi berkas, bukan menebak dari nama.
+   */
   sampleBatch(user: AuthUser) {
-    const nonce = randomBytes(4).toString('hex');
-    const files = SAMPLE_FILES.map((name, i) => ({
-      name,
-      buffer: makePdf([
-        'INVOICE CONTOH (DATA SINTETIS)',
-        `Berkas : ${name}`,
-        `Nomor  : DEMO-${nonce}-${i + 1}`,
-        'Catatan: dibuat otomatis untuk demo, bukan dokumen nyata.',
-      ]),
+    const nonce = randomBytes(3).toString('hex');
+    const files = sampleScenarios(nonce).map((s) => ({
+      name: s.name,
+      buffer: s.lines.length ? makePdf(s.lines) : brokenPdf(),
     }));
     return this.batches.create(files, 'Batch contoh (data demo)', user);
   }
@@ -53,6 +44,7 @@ export class DemoService {
       await em.query('DELETE FROM invoices');
       await em.query('DELETE FROM batches');
       await seedMaster(em);
+      await seedDemoDuplicate(em);
       await resetSettings(em);
       await this.audit.add(
         { actor: userActor(user), action: AuditAction.DEMO_RESET, objectType: 'SYSTEM', objectId: 'demo', summary: 'Mengatur ulang data demo' },

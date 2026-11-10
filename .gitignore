@@ -1,0 +1,20 @@
+# Dependensi
+node_modules/
+
+# Rahasia — jangan pernah di-commit
+.env
+.env.local
+.env.*.local
+
+# Hasil build
+dist/
+build/
+
+# Unggahan runtime
+backend/storage/
+storage/
+
+# Berkas sistem
+.DS_Store
+Thumbs.db
+*.log

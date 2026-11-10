@@ -5,10 +5,11 @@ import { Invoice } from '../database/entities';
 import { AgentClient } from './agent.types';
 import { HttpAgentClient } from './http-agent.client';
 import { ProcessingService } from './processing.service';
+import { StorageModule } from '../storage/storage.module';
 import { StubAgentClient } from './stub/stub-agent.client';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Invoice])],
+  imports: [TypeOrmModule.forFeature([Invoice]), StorageModule],
   providers: [
     { provide: AgentClient, useClass: config.agentMode() === 'http' ? HttpAgentClient : StubAgentClient },
     ProcessingService,

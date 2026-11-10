@@ -23,7 +23,14 @@ function flatten(errors: ValidationError[]): { field: string; message: string }[
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.enableCors();
+  // Origin FE: Vercel (produksi) + pengembangan lokal. `*` bila CORS_ORIGINS kosong.
+  const origins = config.corsOrigins();
+  app.enableCors({
+    origin: origins.length ? origins : true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
+    credentials: true,
+  });
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalPipes(
     new ValidationPipe({
