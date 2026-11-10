@@ -79,6 +79,11 @@ class Case:
     vendor: str = ""
     date: str = "2026-11-05"
     lines: list[tuple] = field(default_factory=list)  # (item, qty, harga) sesuai yang ditagih
+    fixed_number: str = ""  # nomor tetap (dipakai contoh duplikat)
+
+
+# Invoice yang ditanam seedDemoDuplicate() di database saat demo direset.
+SEED_DUPLICATE = {"number": "INV-2026-0777", "vendor": "ven_001", "total": 3250000, "date": "2026-10-27"}
 
 
 def make_pdf(lines: list[str]) -> bytes:
@@ -175,14 +180,17 @@ def build_cases() -> list[Case]:
                  lines=[("itm_006", 5, 380000)])
         cases.append(c)
 
-    # 1 DUPLICATE: nomor + vendor + total + tanggal sama dengan invoice pertama
-    if cases:
-        src = cases[0]
-        dup = Case(f"eval_{nxt()}_duplikat.pdf", src.po, "DUPLICATE", None,
-                   "Nomor, vendor, dan total sama dengan invoice yang sudah ada",
-                   src.vendor, date=src.date, lines=src.lines)
-        cases.append(dup)
-        duplicate_source = src
+    # 1 DUPLICATE: harus identik dengan invoice yang SUDAH ADA di database.
+    # seedDemoDuplicate() (backend/src/seed/master-data.ts) menanam invoice ini saat
+    # demo direset / seed dijalankan. Nomor, vendor, total, dan tanggal harus sama.
+    dup = Case(
+        f"eval_{nxt()}_duplikat.pdf", "PO-0008", "DUPLICATE", None,
+        "Nomor, vendor, dan total sama dengan INV-2026-0777 yang sudah ada di sistem",
+        "ven_001", date=SEED_DUPLICATE["date"],
+        lines=[("itm_004", 25, 55000), ("itm_005", 50, 37500)],
+    )
+    dup.fixed_number = SEED_DUPLICATE["number"]  # type: ignore[attr-defined]
+    cases.append(dup)
 
     return cases
 
@@ -224,9 +232,7 @@ def main() -> int:
 
     rows = []
     for i, c in enumerate(cases, 1):
-        number = f"INV-{c.file_name.split('_')[1]}-{i:03d}"
-        if c.expect_verdict == "DUPLICATE":
-            number = f"INV-{cases[0].file_name.split('_')[1]}-001"  # samakan dengan invoice pertama
+        number = c.fixed_number or f"INV-{c.file_name.split('_')[1]}-{i:03d}"
         req = {
             "invoice_id": f"eval_{i:03d}",
             "file_name": c.file_name,

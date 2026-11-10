@@ -1,0 +1,51 @@
+file_name,harap,dapat,status_http,cocok,confidence,selisih,po,review_reason,catatan
+eval_EVAL-001_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0021,,Semua baris cocok PO dan GRN
+eval_EVAL-002_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0022,,Semua baris cocok PO dan GRN
+eval_EVAL-003_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0023,,Semua baris cocok PO dan GRN
+eval_EVAL-004_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0024,,Semua baris cocok PO dan GRN
+eval_EVAL-005_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0025,,Semua baris cocok PO dan GRN
+eval_EVAL-006_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0026,,Semua baris cocok PO dan GRN
+eval_EVAL-007_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0027,,Semua baris cocok PO dan GRN
+eval_EVAL-008_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0028,,Semua baris cocok PO dan GRN
+eval_EVAL-009_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0029,,Semua baris cocok PO dan GRN
+eval_EVAL-010_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0030,,Semua baris cocok PO dan GRN
+eval_EVAL-011_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0031,,Semua baris cocok PO dan GRN
+eval_EVAL-012_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0032,,Semua baris cocok PO dan GRN
+eval_EVAL-013_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0033,,Semua baris cocok PO dan GRN
+eval_EVAL-014_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0034,,Semua baris cocok PO dan GRN
+eval_EVAL-015_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0035,,Semua baris cocok PO dan GRN
+eval_EVAL-016_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0036,,Semua baris cocok PO dan GRN
+eval_EVAL-017_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0021,,Semua baris cocok PO dan GRN
+eval_EVAL-018_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0022,,Semua baris cocok PO dan GRN
+eval_EVAL-019_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0023,,Semua baris cocok PO dan GRN
+eval_EVAL-020_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0024,,Semua baris cocok PO dan GRN
+eval_EVAL-021_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0025,,Semua baris cocok PO dan GRN
+eval_EVAL-022_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0026,,Semua baris cocok PO dan GRN
+eval_EVAL-023_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0027,,Semua baris cocok PO dan GRN
+eval_EVAL-024_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0028,,Semua baris cocok PO dan GRN
+eval_EVAL-025_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0029,,Semua baris cocok PO dan GRN
+eval_EVAL-026_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0030,,Semua baris cocok PO dan GRN
+eval_EVAL-027_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0031,,Semua baris cocok PO dan GRN
+eval_EVAL-028_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0032,,Semua baris cocok PO dan GRN
+eval_EVAL-029_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0033,,Semua baris cocok PO dan GRN
+eval_EVAL-030_clean.pdf,CLEAN,CLEAN,200,YA,0.9,0,PO-0034,,Semua baris cocok PO dan GRN
+eval_EVAL-031_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,225000,PO-0024,,"Harga itm_006 naik 11250 di atas toleransi 0,5%"
+eval_EVAL-032_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,246400,PO-0025,,"Harga itm_006 naik 30800 di atas toleransi 0,5%"
+eval_EVAL-033_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,83250,PO-0026,,"Harga itm_005 naik 1110 di atas toleransi 0,5%"
+eval_EVAL-034_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,278400,PO-0027,,"Harga itm_001 naik 4640 di atas toleransi 0,5%"
+eval_EVAL-035_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,73575,PO-0028,,"Harga itm_004 naik 1635 di atas toleransi 0,5%"
+eval_EVAL-036_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,209440,PO-0029,,"Harga itm_003 naik 9520 di atas toleransi 0,5%"
+eval_EVAL-037_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,29700,PO-0030,,"Harga itm_008 naik 2970 di atas toleransi 0,5%"
+eval_EVAL-038_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,411840,PO-0031,,"Harga itm_001 naik 4576 di atas toleransi 0,5%"
+eval_EVAL-039_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,91080,PO-0032,,"Harga itm_004 naik 1656 di atas toleransi 0,5%"
+eval_EVAL-040_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,297600,PO-0033,,"Harga itm_005 naik 2976 di atas toleransi 0,5%"
+eval_EVAL-041_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,168000,PO-0034,,"Harga itm_007 naik 33600 di atas toleransi 0,5%"
+eval_EVAL-042_harga_naik.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,348600,PO-0035,,"Harga itm_001 naik 4648 di atas toleransi 0,5%"
+eval_EVAL-043_jumlah_lebih.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,111000,PO-0026,,"Menagih 78 itm_005, diterima 75"
+eval_EVAL-044_jumlah_lebih.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,297000,PO-0030,,"Menagih 13 itm_008, diterima 10"
+eval_EVAL-045_jumlah_lebih.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,3360000,PO-0034,,"Menagih 8 itm_007, diterima 5"
+eval_EVAL-046_jumlah_lebih.pdf,EXCEPTION,EXCEPTION,200,YA,0.9,3330000,PO-0022,,"Menagih 9 itm_007, diterima 6"
+eval_EVAL-047_po_tidak_ada.pdf,NEEDS_REVIEW,NEEDS_REVIEW,200,YA,0.6,,PO-9900,PO PO-9900 tidak ditemukan di data master,PO tidak ada di data master
+eval_EVAL-048_po_tidak_ada.pdf,NEEDS_REVIEW,NEEDS_REVIEW,200,YA,0.6,,PO-9901,PO PO-9901 tidak ditemukan di data master,PO tidak ada di data master
+eval_EVAL-049_po_tidak_ada.pdf,NEEDS_REVIEW,NEEDS_REVIEW,200,YA,0.6,,PO-9902,PO PO-9902 tidak ditemukan di data master,PO tidak ada di data master
+eval_EVAL-050_duplikat.pdf,DUPLICATE,DUPLICATE,200,YA,0.93,,PO-0008,,"Nomor, vendor, dan total sama dengan INV-2026-0777 yang sudah ada di sistem"
